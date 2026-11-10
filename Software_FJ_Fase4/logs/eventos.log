@@ -1,0 +1,405 @@
+# El programa agregará aquí sus eventos y errores.
+2026-11-10 14:50:48,718 | INFO | Cliente registrado: C001
+2026-11-10 14:50:48,718 | INFO | Cliente registrado: C002
+2026-11-10 14:50:48,719 | ERROR | Operación 3: Rechazar cliente inválido
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ_Fase4/demo.py", line 11, in prueba
+    resultado = accion()
+  File "/mnt/data/Software_FJ_Fase4/demo.py", line 21, in <lambda>
+    prueba(3, "Rechazar cliente inválido", lambda: g.registrar_cliente(Cliente("C003","A","correo","123")))
+                                                                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ_Fase4/cliente.py", line 7, in __init__
+    self.nombre = nombre
+    ^^^^^^^^^^^
+  File "/mnt/data/Software_FJ_Fase4/cliente.py", line 18, in nombre
+    raise DatosInvalidosError("El nombre debe tener al menos dos caracteres.")
+excepciones.DatosInvalidosError: El nombre debe tener al menos dos caracteres.
+2026-11-10 14:50:48,719 | INFO | Servicio registrado: S001
+2026-11-10 14:50:48,719 | INFO | Servicio registrado: S002
+2026-11-10 14:50:48,719 | INFO | Servicio registrado: S003
+2026-11-10 14:50:48,720 | INFO | Reserva creada: R001
+2026-11-10 14:50:48,720 | INFO | Finalizó intento de reserva: R001
+2026-11-10 14:50:48,720 | ERROR | Error creando reserva R002
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ_Fase4/gestor.py", line 52, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+  File "/mnt/data/Software_FJ_Fase4/gestor.py", line 41, in buscar_cliente
+    raise ClienteNoEncontradoError(f"No existe el cliente {identificador}.")
+excepciones.ClienteNoEncontradoError: No existe el cliente C999.
+2026-11-10 14:50:48,720 | INFO | Finalizó intento de reserva: R002
+2026-11-10 14:50:48,720 | ERROR | Operación 8: Reserva con cliente inexistente
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ_Fase4/gestor.py", line 52, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+  File "/mnt/data/Software_FJ_Fase4/gestor.py", line 41, in buscar_cliente
+    raise ClienteNoEncontradoError(f"No existe el cliente {identificador}.")
+excepciones.ClienteNoEncontradoError: No existe el cliente C999.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ_Fase4/demo.py", line 11, in prueba
+    resultado = accion()
+  File "/mnt/data/Software_FJ_Fase4/demo.py", line 31, in <lambda>
+    prueba(8, "Reserva con cliente inexistente", lambda: g.crear_reserva("R002","C999","S002",1))
+                                                         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ_Fase4/gestor.py", line 58, in crear_reserva
+    raise RuntimeError(f"No fue posible crear {id_reserva}.") from error
+RuntimeError: No fue posible crear R002.
+2026-11-10 14:50:48,721 | ERROR | Error creando reserva R003
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ_Fase4/gestor.py", line 54, in crear_reserva
+    reserva = Reserva(id_reserva, cliente, servicio, duracion, impuesto, descuento)
+  File "/mnt/data/Software_FJ_Fase4/reserva.py", line 11, in __init__
+    servicio.validar_duracion(duracion)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/mnt/data/Software_FJ_Fase4/servicios.py", line 46, in validar_duracion
+    raise DatosInvalidosError("El alquiler debe ser de 1 a 30 días.")
+excepciones.DatosInvalidosError: El alquiler debe ser de 1 a 30 días.
+2026-11-10 14:50:48,721 | INFO | Finalizó intento de reserva: R003
+2026-11-10 14:50:48,721 | ERROR | Operación 9: Reserva con duración inválida
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ_Fase4/gestor.py", line 54, in crear_reserva
+    reserva = Reserva(id_reserva, cliente, servicio, duracion, impuesto, descuento)
+  File "/mnt/data/Software_FJ_Fase4/reserva.py", line 11, in __init__
+    servicio.validar_duracion(duracion)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/mnt/data/Software_FJ_Fase4/servicios.py", line 46, in validar_duracion
+    raise DatosInvalidosError("El alquiler debe ser de 1 a 30 días.")
+excepciones.DatosInvalidosError: El alquiler debe ser de 1 a 30 días.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ_Fase4/demo.py", line 11, in prueba
+    resultado = accion()
+  File "/mnt/data/Software_FJ_Fase4/demo.py", line 32, in <lambda>
+    prueba(9, "Reserva con duración inválida", lambda: g.crear_reserva("R003","C002","S002",0))
+                                                       ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ_Fase4/gestor.py", line 58, in crear_reserva
+    raise RuntimeError(f"No fue posible crear {id_reserva}.") from error
+RuntimeError: No fue posible crear R003.
+2026-11-10 14:50:48,722 | INFO | Reserva creada: R004
+2026-11-10 14:50:48,722 | INFO | Finalizó intento de reserva: R004
+2026-11-10 14:50:48,722 | ERROR | Operación 12: Intentar procesar reserva cancelada
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ_Fase4/demo.py", line 11, in prueba
+    resultado = accion()
+  File "/mnt/data/Software_FJ_Fase4/demo.py", line 40, in <lambda>
+    prueba(12, "Intentar procesar reserva cancelada", lambda: g.reservas[-1].procesar())
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/mnt/data/Software_FJ_Fase4/reserva.py", line 30, in procesar
+    raise ReservaNoPermitidaError("La reserva debe estar confirmada.")
+excepciones.ReservaNoPermitidaError: La reserva debe estar confirmada.
+2026-11-10 14:50:52,519 | INFO | Cliente registrado: C100
+2026-11-10 14:50:52,519 | INFO | Servicio registrado: S100
+2026-11-10 14:50:52,519 | INFO | Cliente registrado: C100
+2026-11-10 14:50:52,519 | INFO | Servicio registrado: S100
+2026-11-10 14:50:52,519 | INFO | Cliente registrado: C100
+2026-11-10 14:50:52,519 | INFO | Servicio registrado: S100
+2026-11-10 14:50:52,519 | INFO | Cliente registrado: C100
+2026-11-10 14:50:52,519 | INFO | Servicio registrado: S100
+2026-11-10 14:50:52,519 | INFO | Cliente registrado: C100
+2026-11-10 14:50:52,519 | INFO | Servicio registrado: S100
+2026-11-10 14:50:52,519 | INFO | Reserva creada: R101
+2026-11-10 14:50:52,519 | INFO | Finalizó intento de reserva: R101
+2026-11-10 14:50:52,519 | INFO | Cliente registrado: C100
+2026-11-10 14:50:52,519 | INFO | Servicio registrado: S100
+2026-11-10 14:50:52,519 | INFO | Reserva creada: R100
+2026-11-10 14:50:52,519 | INFO | Finalizó intento de reserva: R100
+2026-11-10 14:50:52,520 | INFO | Cliente registrado: C100
+2026-11-10 14:50:52,520 | INFO | Servicio registrado: S100
+2026-11-10 10:16:12,754 | INFO | Cliente registrado: C001
+2026-11-10 10:16:12,757 | INFO | Cliente registrado: C002
+2026-11-10 10:16:12,762 | ERROR | Operación 3: Rechazar cliente inválido
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 21, in <lambda>
+    prueba(3, "Rechazar cliente inválido", lambda: g.registrar_cliente(Cliente("C003","A","correo","123")))
+                                                                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\cliente.py", line 7, in __init__
+    self.nombre = nombre
+    ^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\cliente.py", line 18, in nombre
+    raise DatosInvalidosError("El nombre debe tener al menos dos caracteres.")
+excepciones.DatosInvalidosError: El nombre debe tener al menos dos caracteres.
+2026-11-10 10:16:12,947 | INFO | Servicio registrado: S001
+2026-11-10 10:16:12,947 | INFO | Servicio registrado: S002
+2026-11-10 10:16:12,947 | INFO | Servicio registrado: S003
+2026-11-10 10:16:12,948 | INFO | Reserva creada: R001
+2026-11-10 10:16:12,948 | INFO | Finalizó intento de reserva: R001
+2026-11-10 10:16:12,949 | ERROR | Error creando reserva R002
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 52, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 41, in buscar_cliente
+    raise ClienteNoEncontradoError(f"No existe el cliente {identificador}.")
+excepciones.ClienteNoEncontradoError: No existe el cliente C999.
+2026-11-10 10:16:12,951 | INFO | Finalizó intento de reserva: R002
+2026-11-10 10:16:12,951 | ERROR | Operación 8: Reserva con cliente inexistente
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 52, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 41, in buscar_cliente
+    raise ClienteNoEncontradoError(f"No existe el cliente {identificador}.")
+excepciones.ClienteNoEncontradoError: No existe el cliente C999.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 31, in <lambda>
+    prueba(8, "Reserva con cliente inexistente", lambda: g.crear_reserva("R002","C999","S002",1))
+                                                         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 58, in crear_reserva
+    raise RuntimeError(f"No fue posible crear {id_reserva}.") from error
+RuntimeError: No fue posible crear R002.
+2026-11-10 10:16:12,983 | ERROR | Error creando reserva R003
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 54, in crear_reserva
+    reserva = Reserva(id_reserva, cliente, servicio, duracion, impuesto, descuento)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 11, in __init__
+    servicio.validar_duracion(duracion)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\servicios.py", line 46, in validar_duracion
+    raise DatosInvalidosError("El alquiler debe ser de 1 a 30 días.")
+excepciones.DatosInvalidosError: El alquiler debe ser de 1 a 30 días.
+2026-11-10 10:16:12,985 | INFO | Finalizó intento de reserva: R003
+2026-11-10 10:16:12,986 | ERROR | Operación 9: Reserva con duración inválida
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 54, in crear_reserva
+    reserva = Reserva(id_reserva, cliente, servicio, duracion, impuesto, descuento)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 11, in __init__
+    servicio.validar_duracion(duracion)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\servicios.py", line 46, in validar_duracion
+    raise DatosInvalidosError("El alquiler debe ser de 1 a 30 días.")
+excepciones.DatosInvalidosError: El alquiler debe ser de 1 a 30 días.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 32, in <lambda>
+    prueba(9, "Reserva con duración inválida", lambda: g.crear_reserva("R003","C002","S002",0))
+                                                       ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 58, in crear_reserva
+    raise RuntimeError(f"No fue posible crear {id_reserva}.") from error
+RuntimeError: No fue posible crear R003.
+2026-11-10 10:16:12,990 | INFO | Reserva creada: R004
+2026-11-10 10:16:12,990 | INFO | Finalizó intento de reserva: R004
+2026-11-10 10:16:12,990 | ERROR | Operación 12: Intentar procesar reserva cancelada
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 40, in <lambda>
+    prueba(12, "Intentar procesar reserva cancelada", lambda: g.reservas[-1].procesar())
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 30, in procesar
+    raise ReservaNoPermitidaError("La reserva debe estar confirmada.")
+excepciones.ReservaNoPermitidaError: La reserva debe estar confirmada.
+2026-11-10 10:17:00,703 | INFO | Cliente registrado: C001
+2026-11-10 10:17:00,704 | INFO | Cliente registrado: C002
+2026-11-10 10:17:00,704 | ERROR | Operación 3: Rechazar cliente inválido
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 21, in <lambda>
+    prueba(3, "Rechazar cliente inválido", lambda: g.registrar_cliente(Cliente("C003","A","correo","123")))
+                                                                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\cliente.py", line 7, in __init__
+    self.nombre = nombre
+    ^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\cliente.py", line 18, in nombre
+    raise DatosInvalidosError("El nombre debe tener al menos dos caracteres.")
+excepciones.DatosInvalidosError: El nombre debe tener al menos dos caracteres.
+2026-11-10 10:17:00,706 | INFO | Servicio registrado: S001
+2026-11-10 10:17:00,707 | INFO | Servicio registrado: S002
+2026-11-10 10:17:00,707 | INFO | Servicio registrado: S003
+2026-11-10 10:17:00,707 | INFO | Reserva creada: R001
+2026-11-10 10:17:00,707 | INFO | Finalizó intento de reserva: R001
+2026-11-10 10:17:00,708 | ERROR | Error creando reserva R002
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 52, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 41, in buscar_cliente
+    raise ClienteNoEncontradoError(f"No existe el cliente {identificador}.")
+excepciones.ClienteNoEncontradoError: No existe el cliente C999.
+2026-11-10 10:17:00,710 | INFO | Finalizó intento de reserva: R002
+2026-11-10 10:17:00,710 | ERROR | Operación 8: Reserva con cliente inexistente
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 52, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 41, in buscar_cliente
+    raise ClienteNoEncontradoError(f"No existe el cliente {identificador}.")
+excepciones.ClienteNoEncontradoError: No existe el cliente C999.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 31, in <lambda>
+    prueba(8, "Reserva con cliente inexistente", lambda: g.crear_reserva("R002","C999","S002",1))
+                                                         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 58, in crear_reserva
+    raise RuntimeError(f"No fue posible crear {id_reserva}.") from error
+RuntimeError: No fue posible crear R002.
+2026-11-10 10:17:00,712 | ERROR | Error creando reserva R003
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 54, in crear_reserva
+    reserva = Reserva(id_reserva, cliente, servicio, duracion, impuesto, descuento)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 11, in __init__
+    servicio.validar_duracion(duracion)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\servicios.py", line 46, in validar_duracion
+    raise DatosInvalidosError("El alquiler debe ser de 1 a 30 días.")
+excepciones.DatosInvalidosError: El alquiler debe ser de 1 a 30 días.
+2026-11-10 10:17:00,715 | INFO | Finalizó intento de reserva: R003
+2026-11-10 10:17:00,716 | ERROR | Operación 9: Reserva con duración inválida
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 54, in crear_reserva
+    reserva = Reserva(id_reserva, cliente, servicio, duracion, impuesto, descuento)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 11, in __init__
+    servicio.validar_duracion(duracion)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\servicios.py", line 46, in validar_duracion
+    raise DatosInvalidosError("El alquiler debe ser de 1 a 30 días.")
+excepciones.DatosInvalidosError: El alquiler debe ser de 1 a 30 días.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 32, in <lambda>
+    prueba(9, "Reserva con duración inválida", lambda: g.crear_reserva("R003","C002","S002",0))
+                                                       ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 58, in crear_reserva
+    raise RuntimeError(f"No fue posible crear {id_reserva}.") from error
+RuntimeError: No fue posible crear R003.
+2026-11-10 10:17:00,719 | INFO | Reserva creada: R004
+2026-11-10 10:17:00,719 | INFO | Finalizó intento de reserva: R004
+2026-11-10 10:17:00,719 | ERROR | Operación 12: Intentar procesar reserva cancelada
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 40, in <lambda>
+    prueba(12, "Intentar procesar reserva cancelada", lambda: g.reservas[-1].procesar())
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 30, in procesar
+    raise ReservaNoPermitidaError("La reserva debe estar confirmada.")
+excepciones.ReservaNoPermitidaError: La reserva debe estar confirmada.
+2026-11-10 10:17:05,018 | INFO | Cliente registrado: C001
+2026-11-10 10:17:05,025 | INFO | Cliente registrado: C002
+2026-11-10 10:17:05,026 | ERROR | Operación 3: Rechazar cliente inválido
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 21, in <lambda>
+    prueba(3, "Rechazar cliente inválido", lambda: g.registrar_cliente(Cliente("C003","A","correo","123")))
+                                                                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\cliente.py", line 7, in __init__
+    self.nombre = nombre
+    ^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\cliente.py", line 18, in nombre
+    raise DatosInvalidosError("El nombre debe tener al menos dos caracteres.")
+excepciones.DatosInvalidosError: El nombre debe tener al menos dos caracteres.
+2026-11-10 10:17:05,034 | INFO | Servicio registrado: S001
+2026-11-10 10:17:05,038 | INFO | Servicio registrado: S002
+2026-11-10 10:17:05,039 | INFO | Servicio registrado: S003
+2026-11-10 10:17:05,040 | INFO | Reserva creada: R001
+2026-11-10 10:17:05,041 | INFO | Finalizó intento de reserva: R001
+2026-11-10 10:17:05,042 | ERROR | Error creando reserva R002
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 52, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 41, in buscar_cliente
+    raise ClienteNoEncontradoError(f"No existe el cliente {identificador}.")
+excepciones.ClienteNoEncontradoError: No existe el cliente C999.
+2026-11-10 10:17:05,047 | INFO | Finalizó intento de reserva: R002
+2026-11-10 10:17:05,047 | ERROR | Operación 8: Reserva con cliente inexistente
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 52, in crear_reserva
+    cliente = self.buscar_cliente(id_cliente)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 41, in buscar_cliente
+    raise ClienteNoEncontradoError(f"No existe el cliente {identificador}.")
+excepciones.ClienteNoEncontradoError: No existe el cliente C999.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 31, in <lambda>
+    prueba(8, "Reserva con cliente inexistente", lambda: g.crear_reserva("R002","C999","S002",1))
+                                                         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 58, in crear_reserva
+    raise RuntimeError(f"No fue posible crear {id_reserva}.") from error
+RuntimeError: No fue posible crear R002.
+2026-11-10 10:17:05,052 | ERROR | Error creando reserva R003
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 54, in crear_reserva
+    reserva = Reserva(id_reserva, cliente, servicio, duracion, impuesto, descuento)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 11, in __init__
+    servicio.validar_duracion(duracion)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\servicios.py", line 46, in validar_duracion
+    raise DatosInvalidosError("El alquiler debe ser de 1 a 30 días.")
+excepciones.DatosInvalidosError: El alquiler debe ser de 1 a 30 días.
+2026-11-10 10:17:05,057 | INFO | Finalizó intento de reserva: R003
+2026-11-10 10:17:05,057 | ERROR | Operación 9: Reserva con duración inválida
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 54, in crear_reserva
+    reserva = Reserva(id_reserva, cliente, servicio, duracion, impuesto, descuento)
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 11, in __init__
+    servicio.validar_duracion(duracion)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\servicios.py", line 46, in validar_duracion
+    raise DatosInvalidosError("El alquiler debe ser de 1 a 30 días.")
+excepciones.DatosInvalidosError: El alquiler debe ser de 1 a 30 días.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 32, in <lambda>
+    prueba(9, "Reserva con duración inválida", lambda: g.crear_reserva("R003","C002","S002",0))
+                                                       ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\gestor.py", line 58, in crear_reserva
+    raise RuntimeError(f"No fue posible crear {id_reserva}.") from error
+RuntimeError: No fue posible crear R003.
+2026-11-10 10:17:05,073 | INFO | Reserva creada: R004
+2026-11-10 10:17:05,074 | INFO | Finalizó intento de reserva: R004
+2026-11-10 10:17:05,075 | ERROR | Operación 12: Intentar procesar reserva cancelada
+Traceback (most recent call last):
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 11, in prueba
+    resultado = accion()
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\demo.py", line 40, in <lambda>
+    prueba(12, "Intentar procesar reserva cancelada", lambda: g.reservas[-1].procesar())
+                                                              ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\ASUS\Desktop\Software_FJ_Fase4\reserva.py", line 30, in procesar
+    raise ReservaNoPermitidaError("La reserva debe estar confirmada.")
+excepciones.ReservaNoPermitidaError: La reserva debe estar confirmada.
+2026-11-10 10:21:37,617 | INFO | Cliente registrado: C100
+2026-11-10 10:21:37,618 | INFO | Servicio registrado: S100
+2026-11-10 10:21:37,621 | INFO | Cliente registrado: C100
+2026-11-10 10:21:37,622 | INFO | Servicio registrado: S100
+2026-11-10 10:21:37,625 | INFO | Cliente registrado: C100
+2026-11-10 10:21:37,625 | INFO | Servicio registrado: S100
+2026-11-10 10:21:37,628 | INFO | Cliente registrado: C100
+2026-11-10 10:21:37,629 | INFO | Servicio registrado: S100
+2026-11-10 10:21:37,633 | INFO | Cliente registrado: C100
+2026-11-10 10:21:37,634 | INFO | Servicio registrado: S100
+2026-11-10 10:21:37,634 | INFO | Reserva creada: R101
+2026-11-10 10:21:37,634 | INFO | Finalizó intento de reserva: R101
+2026-11-10 10:21:37,638 | INFO | Cliente registrado: C100
+2026-11-10 10:21:37,638 | INFO | Servicio registrado: S100
+2026-11-10 10:21:37,638 | INFO | Reserva creada: R100
+2026-11-10 10:21:37,638 | INFO | Finalizó intento de reserva: R100
+2026-11-10 10:21:37,642 | INFO | Cliente registrado: C100
+2026-11-10 10:21:37,642 | INFO | Servicio registrado: S100
